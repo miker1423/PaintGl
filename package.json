@@ -1,0 +1,19 @@
+{
+    "name": "Paint",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/bundle.js",
+    "dependencies": {
+        "@types/gl-matrix": "^2.4.1",
+        "awesome-typescript-loader": "^5.2.0",
+        "gl-matrix": "^2.8.1",
+        "source-map-loader": "^0.2.4",
+        "smartgl": "0.1.1"
+    },
+    "devDependencies": {
+        "typescript": "^3.0.1",
+        "webpack": "^4.20.2",
+        "webpack-cli": "^3.1.2"
+    },
+    "license": "MIT"
+}
