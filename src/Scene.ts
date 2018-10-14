@@ -4,6 +4,8 @@ import Point4D from "smartgl/lib/Point4D";
 import Square from "smartgl/lib/forms/Square";
 
 import Triangle from "./Forms/Triangle"
+import GLVector from "smartgl/lib/GLVector";
+import { mat4 } from "gl-matrix";
 
 export default class Scene extends GLScene {
     private shapes: IDrawable[] = [];
@@ -13,7 +15,16 @@ export default class Scene extends GLScene {
     }
 
     protected render(): void {
-        this.shapes.forEach(shape => this.draw(0, 0, shape.draw(), shape.draw().length));
+        this.shapes.forEach(shape => this.draw(shape.vectors, shape.count));
+    }
+
+    protected uniformBindings(vector: GLVector) {
+        const pointSize = this.gl.getUniformLocation(vector.program, "uPointSize");
+        const uTransform = this.gl.getUniformLocation(vector.program, "uTransformMatrix");
+        this.gl.uniform1f(pointSize, 5);
+        const transformMatrix = mat4.create();
+        mat4.multiply(transformMatrix, mat4.create(), vector.transform);
+        this.gl.uniformMatrix4fv(uTransform, false, transformMatrix);
     }
 
     private onClick(e: MouseEvent) {
@@ -36,12 +47,12 @@ export default class Scene extends GLScene {
 
         switch (option) {
             case "Square":
-                return new Square(center, size);
+                return new Square(this.gl, center, size);
             case "Triangle":
                 return new Triangle(this.gl, center, size);
         }
 
-        return new Square(center, size);
+        return new Square(this.gl, center, size);
     }
 
     public reset() {

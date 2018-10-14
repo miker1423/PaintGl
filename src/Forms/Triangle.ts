@@ -1,8 +1,9 @@
 import AbstractPolygon from "smartgl/lib/forms/AbstractPolygon";
-import Point4D from "smartgl/lib/Point4D";
 import GLVector from "smartgl/lib/GLVector";
+import Point4D from "smartgl/lib/Point4D";
 
 export default class Triangle extends AbstractPolygon {
+
     protected center: Point4D;
     protected radius: number;
     protected position: GLVector;
@@ -22,7 +23,11 @@ export default class Triangle extends AbstractPolygon {
         this.setColor(255, 255, 255);
     }
 
-    private setCorners(radius: number) {
+    protected pointAmount(): number {
+        throw new Error("Method not implemented.");
+    }
+
+    public setCorners(radius: number) {
         let base = Math.PI / 2;
         for (var i = 0; i < 3; i++) {
             let angle = base * i * (2 * Math.PI / 3);

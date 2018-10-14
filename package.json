@@ -1,5 +1,5 @@
 {
-    "name": "Paint",
+    "name": "paint",
     "version": "1.0.0",
     "description": "",
     "main": "dist/bundle.js",
@@ -8,7 +8,7 @@
         "awesome-typescript-loader": "^5.2.0",
         "gl-matrix": "^2.8.1",
         "source-map-loader": "^0.2.4",
-        "smartgl": "0.1.1"
+        "smartgl": "0.1.11"
     },
     "devDependencies": {
         "typescript": "^3.0.1",
