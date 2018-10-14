@@ -12,6 +12,8 @@ export default class Triangle extends AbstractPolygon {
         super();
         this.position = new GLVector(gl, 3);
         this.color = new GLVector(gl, 3);
+        this.position.attributeName = "aPosition";
+        this.color.attributeName = "aColor";
 
         this.center = center;
         this.radius = radius;
