@@ -2,8 +2,9 @@ import GLScene from "smartgl/lib/GLScene";
 import IDrawable from "smartgl/lib/interfaces/IDrawable";
 import Point4D from "smartgl/lib/Point4D";
 import Square from "smartgl/lib/forms/Square";
-
-import Triangle from "./Forms/Triangle"
+import Triangle from "smartgl/lib/forms/Triangle"
+import Rectangle from "smartgl/lib/forms/Rectangle"
+    
 import GLVector from "smartgl/lib/GLVector";
 import { mat4 } from "gl-matrix";
 
@@ -30,9 +31,9 @@ export default class Scene extends GLScene {
     private onClick(e: MouseEvent) {
         let center = this.getCenterLocation(e.clientX, e.clientY);
 
-        this.shapes.push(this.getSelectedOption(center, 5));
+        this.shapes.push(this.getSelectedOption(center, .2));
 
-        this.render();
+        this.nextFrame();
     }
 
     private getCenterLocation(x: number, y: number) {
@@ -50,6 +51,8 @@ export default class Scene extends GLScene {
                 return new Square(this.gl, center, size);
             case "Triangle":
                 return new Triangle(this.gl, center, size);
+            case "Rectangle":
+                return new Rectangle(this.gl, center, size);
         }
 
         return new Square(this.gl, center, size);
